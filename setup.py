@@ -4,7 +4,7 @@ import pkg_resources
 from setuptools import setup, find_packages
 
 setup(
-    name="VLN_Pre",
+    name="VLNPre",
     py_modules=["vlnpre"],
     version="1.0",
     description="",
