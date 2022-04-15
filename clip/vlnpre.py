@@ -79,13 +79,14 @@ def _convert_image_to_rgb(image):
 
 
 def _transform(n_px):
+    # Compose 串联多个图片变换的操作 
     return Compose([
-        Resize(n_px, interpolation=BICUBIC),
-        CenterCrop(n_px),
+        Resize(n_px, interpolation=BICUBIC),#双立方插值 改变尺寸 input_resolution=input_size(image)
+        CenterCrop(n_px),#图像裁剪（从中间开始）
         _convert_image_to_rgb,
-        ToTensor(),
+        ToTensor(),#变成适合网络处理的张量 这个之后输入到
         Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),
-    ])
+    ])# 归一化
 
 
 def available_models() -> List[str]:
@@ -192,7 +193,7 @@ def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_a
         patch_float(model.encode_text)
 
         model.float()
-
+#model.input_resolution.item()是modified resnet里的
     return model, _transform(model.input_resolution.item())
 
 
