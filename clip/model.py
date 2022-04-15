@@ -96,6 +96,10 @@ class ModifiedResNet(nn.Module):
     - There are now 3 "stem" convolutions as opposed to 1, with an average pool instead of a max pool.
     - Performs anti-aliasing strided convolutions, where an avgpool is prepended to convolutions with stride > 1
     - The final pooling layer is a QKV attention instead of an average pool
+    与torchvision类似但包含以下更改的ResNet类：
+    -现在有3个“stem”卷积，而不是1个，用平均池而不是最大池。
+    -执行消除混叠跨步卷积，其中avgpool前置到stride>1的卷积
+    -最后一个池层是QKV attention，而不是平均池化
     """
 
     def __init__(self, layers, output_dim, heads, input_resolution=224, width=64):
